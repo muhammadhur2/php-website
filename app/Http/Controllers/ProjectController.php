@@ -51,7 +51,7 @@ public function store(Request $request)
     }
 
     return redirect()->route('projects.index');
-    
+
 }
 
 public function edit(Project $project)
@@ -78,6 +78,11 @@ public function update(Request $request, Project $project)
 
 public function destroy(Project $project)
 {
+    // Check if the authenticated user's email matches the project's inp_email
+    if ($project->inp_email != auth()->user()->email) {
+        return redirect()->route('projects.index')->with('error', 'You do not have permission to delete this project.');
+    }
+
     // Assuming you have a related model for student applications named "Application"
     // $applications = $project->applications;
     // if (!$applications->isEmpty()) {
@@ -88,6 +93,7 @@ public function destroy(Project $project)
 
     return redirect()->route('projects.index')->with('message', 'Project deleted successfully!');
 }
+
 
 public function show(Project $project)
 {
