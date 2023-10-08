@@ -31,6 +31,7 @@ public function store(Request $request)
         'trimester' => 'required|integer|min:1|max:3',
         'year' => 'required|integer',
     ]);
+    $validatedData['inp_email'] = auth()->user()->email;
 
     Project::create($validatedData);
 
