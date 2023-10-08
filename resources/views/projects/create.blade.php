@@ -51,9 +51,12 @@
         @error('year') <span class="text-red-500">{{ $message }}</span> @enderror
     </div>
 
-    <div class="flex justify-center mt-5">
-        <input type="submit" value="Add Project" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <div class="flex items-center justify-between">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Add Project
+        </button>
     </div>
+
 </form>
 
 </x-app>
