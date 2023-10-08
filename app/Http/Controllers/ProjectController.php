@@ -25,8 +25,8 @@ public function store(Request $request)
     $validatedData = $request->validate([
         'title' => 'required|string|min:5|unique:projects,title,NULL,id,trimester,' . $request->trimester . ',year,' . $request->year,
         'inp_name' => 'required|string|min:5',
-        'inp_email' => 'required|string|email|unique:projects',
-        'description' => 'required|string|min:15', // Assuming 3 words ~ 15 characters
+        'inp_email' => 'required|string|email|',
+        'description' => 'required|regex:/^(\w+\s?){3,}$/',
         'students_needed' => 'required|integer|min:3|max:6',
         'trimester' => 'required|integer|min:1|max:3',
         'year' => 'required|integer',

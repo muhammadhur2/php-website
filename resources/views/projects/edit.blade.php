@@ -1,6 +1,6 @@
 <x-app>
 
-@section('content')
+
 <h1>Edit Project: {{ $project->title }}</h1>
 
 <form action="{{ route('projects.update', $project) }}" method="POST">
@@ -14,6 +14,6 @@
 
     <input type="submit" value="Update Project">
 </form>
-@endsection
+
 
 </x-app>
