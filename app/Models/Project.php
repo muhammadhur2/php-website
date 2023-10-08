@@ -23,4 +23,12 @@ class Project extends Model
         'trimester',
         'year',
     ];
+
+    public function selectedStudents() {
+        return $this->belongsToMany(User::class);
+    }
+    public function files() {
+        return $this->hasMany(ProjectFile::class);
+    }
+    
 }

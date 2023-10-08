@@ -24,7 +24,7 @@
                         <tbody>
                             @foreach($projects as $project)
                                 <tr>
-                                    <td>{{ $project->title }}</td>
+                                    <td><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></td>
                                     <td>{{ $project->inp_name }}</td>
                                     <td>{{ $project->description }}</td>
                                     <td>{{ $project->trimester }}</td>

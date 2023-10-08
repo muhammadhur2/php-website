@@ -33,9 +33,25 @@ public function store(Request $request)
     ]);
     $validatedData['inp_email'] = auth()->user()->email;
 
-    Project::create($validatedData);
+    $project = Project::create($validatedData);
+
+    // Handle file uploads
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('project-images', 'public');
+            $project->files()->create(['file_path' => $path, 'file_type' => 'image']);
+        }
+    }
+
+    if ($request->hasFile('pdfs')) {
+        foreach ($request->file('pdfs') as $pdf) {
+            $path = $pdf->store('project-pdfs', 'public');
+            $project->files()->create(['file_path' => $path, 'file_type' => 'pdf']);
+        }
+    }
 
     return redirect()->route('projects.index');
+    
 }
 
 public function edit(Project $project)
@@ -72,4 +88,22 @@ public function destroy(Project $project)
 
     return redirect()->route('projects.index')->with('message', 'Project deleted successfully!');
 }
+
+public function show(Project $project)
+{
+    return view('projects.show', compact('project'));
 }
+
+public function selectForProject(Project $project) {
+    if(auth()->user()->hasReachedProjectLimit()) {
+        return back()->with('error', 'You have already applied to 3 projects!');
+    }
+
+    $project->selectedStudents()->attach(auth()->id());
+
+    return back()->with('message', 'You have been selected for this project!');
+}
+
+
+}
+

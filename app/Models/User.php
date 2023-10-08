@@ -43,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function selectedProjects() {
+        return $this->belongsToMany(Project::class);
+    }
+    
+    public function hasReachedProjectLimit() {
+        return $this->selectedProjects->count() >= 3;
+    }
+    
 }

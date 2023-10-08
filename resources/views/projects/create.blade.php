@@ -2,7 +2,7 @@
 
 <h1 class="text-center mb-5">Add New Project</h1>
 
-<form action="{{ route('projects.store') }}" method="POST" class="flex flex-col space-y-4 p-5">
+<form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4 p-5">
     @csrf
 
     <div class="flex flex-col space-y-2">
@@ -56,6 +56,19 @@
             Add Project
         </button>
     </div>
+
+    <div class="flex flex-col space-y-2">
+    <label for="images" class="block mb-2">Upload Images:</label>
+    <input type="file" name="images[]" multiple class="border rounded w-full py-2 px-3">
+    @error('images.*') <span class="text-red-500">{{ $message }}</span> @enderror
+</div>
+
+<div class="flex flex-col space-y-2">
+    <label for="pdfs" class="block mb-2">Upload PDFs:</label>
+    <input type="file" name="pdfs[]" accept=".pdf" multiple class="border rounded w-full py-2 px-3">
+    @error('pdfs.*') <span class="text-red-500">{{ $message }}</span> @enderror
+</div>
+
 
 </form>
 

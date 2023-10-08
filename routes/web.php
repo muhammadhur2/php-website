@@ -35,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('projects', ProjectController::class);
+    Route::get('projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::post('/projects/{project}/select', [ProjectController::class, 'selectForProject'])->name('projects.select');
+
+
 });
 
 require __DIR__.'/auth.php';
