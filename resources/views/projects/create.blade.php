@@ -1,44 +1,59 @@
 <x-app>
 
+<h1 class="text-center mb-5">Add New Project</h1>
 
-<h1>Add New Project</h1>
-
-<form action="{{ route('projects.store') }}" method="POST">
+<form action="{{ route('projects.store') }}" method="POST" class="flex flex-col space-y-4 p-5">
     @csrf
 
-    <label for="title">Title:</label>
-    <input type="text" name="title" value="{{ old('title') }}">
-    @error('title') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="title" class="block mb-2">Title:</label>
+        <input type="text" name="title" value="{{ old('title') }}" class="border rounded w-full py-2 px-3">
+        @error('title') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="inp_name">InP Name:</label>
-    <input type="text" name="inp_name" value="{{ old('inp_name') }}">
-    @error('inp_name') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="inp_name" class="block mb-2">InP Name:</label>
+        <input type="text" name="inp_name" value="{{ old('inp_name') }}" class="border rounded w-full py-2 px-3">
+        @error('inp_name') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="inp_email">InP Email:</label>
-    <input type="email" name="inp_email" value="{{ old('inp_email') }}">
-    @error('inp_email') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="inp_email" class="block mb-2">InP Email:</label>
+        <input type="email" name="inp_email" value="{{ old('inp_email') }}" class="border rounded w-full py-2 px-3">
+        @error('inp_email') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="description">Description:</label>
-    <textarea name="description">{{ old('description') }}</textarea>
-    @error('description') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="description" class="block mb-2">Description:</label>
+        <textarea name="description" class="border rounded w-full py-2 px-3">{{ old('description') }}</textarea>
+        @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="students_needed">Number of Students:</label>
-    <input type="number" name="students_needed" min="3" max="6" value="{{ old('students_needed') }}">
-    @error('students_needed') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="students_needed" class="block mb-2">Number of Students:</label>
+        <input type="number" name="students_needed" min="3" max="6" value="{{ old('students_needed') }}" class="border rounded w-full py-2 px-3">
+        @error('students_needed') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="trimester">Trimester:</label>
-    <select name="trimester">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    @error('trimester') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="trimester" class="block mb-2">Trimester:</label>
+        <select name="trimester" class="border rounded w-full py-2 px-3">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        @error('trimester') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <label for="year">Year:</label>
-    <input type="number" name="year" value="{{ old('year', date('Y')) }}">
-    @error('year') <span>{{ $message }}</span> @enderror
+    <div class="flex flex-col space-y-2">
+        <label for="year" class="block mb-2">Year:</label>
+        <input type="number" name="year" value="{{ old('year', date('Y')) }}" class="border rounded w-full py-2 px-3">
+        @error('year') <span class="text-red-500">{{ $message }}</span> @enderror
+    </div>
 
-    <input type="submit" value="Add Project">
+    <div class="flex justify-center mt-5">
+        <input type="submit" value="Add Project" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    </div>
 </form>
 
 </x-app>
