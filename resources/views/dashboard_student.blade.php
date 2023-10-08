@@ -14,4 +14,11 @@
             </div>
         </div>
     </div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-bold text-2xl mb-6">Project Management</h2>
+            <a href="{{ route('projects.index') }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mb-2 mr-2">View My Projects</a>
+        </div>
+    </div>
 </x-app-layout>
