@@ -47,6 +47,11 @@ class User extends Authenticatable
     public function selectedProjects() {
         return $this->belongsToMany(Project::class);
     }
+    public function applications()
+{
+    return $this->hasMany(Application::class, 'student_id');
+}
+
     
     public function hasReachedProjectLimit() {
         return $this->selectedProjects->count() >= 3;

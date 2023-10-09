@@ -148,6 +148,23 @@ public function selectForProject(Project $project) {
 
     return back()->with('message', 'You have been selected for this project!');
 }
+public function apply(Request $request, Project $project)
+{
+    $request->validate([
+        'justification' => 'required|string'
+    ]);
+
+    if(auth()->user()->applications->count() >= 3) {
+        return back()->with('error', 'You have already applied for 3 projects.');
+    }
+
+    $project->applications()->create([
+        'student_id' => auth()->id(),
+        'justification' => $request->justification
+    ]);
+
+    return back()->with('message', 'You have successfully applied for the project.');
+}
 
 
 public function showDashboard()
