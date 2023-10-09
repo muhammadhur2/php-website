@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::get('projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
     Route::post('/projects/{project}/select', [ProjectController::class, 'selectForProject'])->name('projects.select');
 
+    
+
 
 });
 
