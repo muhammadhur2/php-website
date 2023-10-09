@@ -39,8 +39,7 @@ Route::get('/inps/{inpId}', [InpController::class, 'details'])->name('inp.detail
 Route::get('/projects-list', [ProjectController::class, 'projectsList'])->name('projects.list');
 Route::get('/inps/{inpId}/details', [InpController::class, 'details'])->name('inps.details');
 
-   
-Route::middleware('auth')->group(function () {
+Route::post('/projects/{project}/apply', [ProjectController::class, 'apply'])->name('projects.apply');Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
