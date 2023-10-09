@@ -51,11 +51,7 @@
         @error('year') <span class="text-red-500">{{ $message }}</span> @enderror
     </div>
 
-    <div class="flex items-center justify-between">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Add Project
-        </button>
-    </div>
+    
 
     <div class="flex flex-col space-y-2">
     <label for="images" class="block mb-2">Upload Images:</label>
@@ -69,7 +65,12 @@
     @error('pdfs.*') <span class="text-red-500">{{ $message }}</span> @enderror
 </div>
 
-
+<div class="flex items-center justify-between">
+<x-primary-button class="ml-3" type="submit" >
+           Add New Project
+            </x-primary-button> 
+    </div>
+    
 </form>
 
 </x-app>

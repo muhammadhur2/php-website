@@ -17,9 +17,19 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h2 class="font-bold text-2xl mb-6">Project Management</h2>
-            <a href="{{ route('projects.index') }}" class="inline-block bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded-lg mb-2 mr-2">View My Projects</a>
-            <a href="{{ route('projects.create') }}" class="inline-block bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded-lg mb-2">Add New Project</a>
+            <h1 class="font-bold text-2xl mb-6">Project Management</h1>
+          
+
+            <x-primary-button class="ml-3">
+           <a href="{{ route('projects.index') }}" >View My Projects</a>
+            </x-primary-button>
+
+            <x-primary-button class="ml-3">
+            <a href="{{ route('projects.create') }}" >Add New Project</a>
+            </x-primary-button>
+
+
+          
         </div>
     </div>
 </x-app-layout>
