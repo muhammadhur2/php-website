@@ -56,11 +56,21 @@ public function store(Request $request)
 
 public function edit(Project $project)
 {
+    // Check if the authenticated user's email matches the project's inp_email
+    if ($project->inp_email != auth()->user()->email) {
+        return redirect()->route('projects.index')->with('error', 'You do not have permission to edit this project.');
+    }
+
     return view('projects.edit', compact('project'));
 }
 
 public function update(Request $request, Project $project)
 {
+    // Check if the authenticated user's email matches the project's inp_email
+    if ($project->inp_email != auth()->user()->email) {
+        return redirect()->route('projects.index')->with('error', 'You do not have permission to update this project.');
+    }
+
     $validatedData = $request->validate([
         'title' => 'required|string|min:5|unique:projects,title,' . $project->id . ',id,trimester,' . $request->trimester . ',year,' . $request->year,
         'inp_name' => 'required|string|min:5',
@@ -75,6 +85,7 @@ public function update(Request $request, Project $project)
 
     return redirect()->route('projects.index')->with('message', 'Project updated successfully!');
 }
+
 
 public function destroy(Project $project)
 {

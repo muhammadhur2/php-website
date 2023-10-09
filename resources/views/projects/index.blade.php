@@ -57,7 +57,11 @@
                     <div class="mt-8">
                         {{ $projects->links() }}
 
-                        <a href="{{ route('projects.create') }}" class="inline-block bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded-lg mt-4">Add New Project</a>
+                        
+                        <x-primary-button class="ml-3" type="submit" >
+                        <a href="{{ route('projects.create') }}">Add New Project</a>
+                        
+            </x-primary-button> 
                     </div>
 
                 </div>

@@ -53,9 +53,13 @@
         </div>
 
         <div class="flex items-center justify-between">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Update Project
-        </button>
+        <x-primary-button class="ml-3" type="submit" >
+           Update Project
+            </x-primary-button> 
+    </div>
+    
+
+        
     </div>
 
     </form>
