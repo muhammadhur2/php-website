@@ -22,32 +22,31 @@
                         </div>
                     @endif
 
-                    
-                    <table class="table">
-                        <thead>
+                    <table class="w-full bg-white border rounded-lg">
+                        <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th>Title</th>
-                                <th>InP Name</th>
-                                <th>Description</th>
-                                <th>Trimester</th>
-                                <th>Year</th>
-                                <th>Actions</th>
+                                <th class="w-1/6 text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">Title</th>
+                                <th class="w-1/6 text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">InP Name</th>
+                                <th class="w-1/6 text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">Description</th>
+                                <th class="w-1/6 text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">Trimester</th>
+                                <th class="w-1/6 text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">Year</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm border-b border-gray-200">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-gray-700">
                             @foreach($projects as $project)
                                 <tr>
-                                    <td><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></td>
-                                    <td>{{ $project->inp_name }}</td>
-                                    <td>{{ $project->description }}</td>
-                                    <td>{{ $project->trimester }}</td>
-                                    <td>{{ $project->year }}</td>
-                                    <td>
-                                        <a href="{{ route('projects.edit', $project) }}">Edit</a> |
+                                    <td class="w-1/6 text-left py-3 px-4 border-b border-gray-200"><a href="{{ route('projects.show', $project) }}" class="text-blue-500">{{ $project->title }}</a></td>
+                                    <td class="w-1/6 text-left py-3 px-4 border-b border-gray-200">{{ $project->inp_name }}</td>
+                                    <td class="w-1/6 text-left py-3 px-4 border-b border-gray-200">{{ $project->description }}</td>
+                                    <td class="w-1/6 text-left py-3 px-4 border-b border-gray-200">{{ $project->trimester }}</td>
+                                    <td class="w-1/6 text-left py-3 px-4 border-b border-gray-200">{{ $project->year }}</td>
+                                    <td class="text-left py-3 px-4 border-b border-gray-200">
+                                        <a href="{{ route('projects.edit', $project) }}" class="text-blue-500">Edit</a> |
                                         <form action="{{ route('projects.destroy', $project) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit">Delete</button>
+                                            <button type="submit" class="text-red-500">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -55,9 +54,11 @@
                         </tbody>
                     </table>
 
-                    {{ $projects->links() }}  <!-- Laravel pagination links -->
+                    <div class="mt-8">
+                        {{ $projects->links() }}
 
-                    <a href="{{ route('projects.create') }}">Add New Project</a>
+                        <a href="{{ route('projects.create') }}" class="inline-block bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded-lg mt-4">Add New Project</a>
+                    </div>
 
                 </div>
             </div>

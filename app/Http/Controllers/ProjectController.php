@@ -95,10 +95,28 @@ public function destroy(Project $project)
 }
 
 
+// ... existing code ...
+
 public function show(Project $project)
 {
     return view('projects.show', compact('project'));
 }
+
+public function listGroupedByYearAndTrimester()
+{
+    $projectsGrouped = Project::orderBy('year', 'desc')->orderBy('trimester', 'desc')
+                             ->get()
+                             ->groupBy(['year', 'trimester']);
+    return view('projects.listGrouped', compact('projectsGrouped'));
+}
+// ProjectController.php
+
+public function projectsList()
+{
+    $projects = Project::orderBy('year', 'desc')->orderBy('trimester', 'desc')->get()->groupBy(['year', 'trimester']);
+    return view('projectsList', compact('projects'));
+}
+
 
 public function selectForProject(Project $project) {
     if(auth()->user()->hasReachedProjectLimit()) {

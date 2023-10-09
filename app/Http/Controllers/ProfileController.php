@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -59,12 +59,12 @@ class ProfileController extends Controller
     }
 
     public function showDashboard()
-    {
-    if (auth()->user()->is_business) {
+{
+    if(Auth::user()->is_business) {
         return view('dashboard_business');
-    } else {
-        return view('dashboard_student');
     }
-    }
+    $inps = User::where('is_business', true)->paginate(5);
+    return view('dashboard_student', compact('inps'));
+}
 
 }
