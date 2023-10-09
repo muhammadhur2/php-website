@@ -4,7 +4,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Project;
+
+
 
 
 class ProjectController extends Controller
@@ -18,6 +21,13 @@ class ProjectController extends Controller
 public function create()
 {
     return view('projects.create');
+}
+
+public function myProjects()
+{
+    $loggedInEmail = Auth::user()->email;
+    $projects = Project::where('inp_email', $loggedInEmail)->get();
+    return view('dashboard_business', compact('projects'));
 }
 
 public function store(Request $request)
@@ -155,6 +165,23 @@ public function apply(Request $request, Project $project)
 
     return back()->with('message', 'You have successfully applied for the project.');
 }
+
+
+public function showDashboard()
+{
+    if(Auth::user()->is_business) {
+        // Retrieve the email of the currently logged in business/user
+        $loggedInEmail = Auth::user()->email;
+        // Query only the projects that match the logged-in business/user's email
+        $projects = Project::where('inp_email', $loggedInEmail)->get();
+
+        return view('dashboard_business', compact('projects'));
+    }
+
+    $inps = User::where('is_business', true)->paginate(5);
+    return view('dashboard_student', compact('inps'));
+}
+
 
 
 }

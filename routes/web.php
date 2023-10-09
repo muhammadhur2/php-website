@@ -48,6 +48,8 @@ Route::post('/projects/{project}/apply', [ProjectController::class, 'apply'])->n
     Route::get('projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
     Route::post('/projects/{project}/select', [ProjectController::class, 'selectForProject'])->name('projects.select');
 
+    
+
 
 });
 

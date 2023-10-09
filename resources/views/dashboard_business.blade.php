@@ -15,12 +15,14 @@
         </div>
     </div>
 
+    
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h1 class="font-bold text-2xl mb-6">Project Management</h1>
           
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="ml-3" >
            <a href="{{ route('projects.index') }}" >View My Projects</a>
             </x-primary-button>
 
