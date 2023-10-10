@@ -56,5 +56,10 @@ class User extends Authenticatable
     public function hasReachedProjectLimit() {
         return $this->selectedProjects->count() >= 3;
     }
+
+    public function roles()
+{
+    return $this->belongsToMany(Role::class);
+}
     
 }

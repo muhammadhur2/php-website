@@ -104,16 +104,17 @@ public function destroy(Project $project)
         return redirect()->route('projects.index')->with('error', 'You do not have permission to delete this project.');
     }
 
-    // Assuming you have a related model for student applications named "Application"
-    // $applications = $project->applications;
-    // if (!$applications->isEmpty()) {
-    //     return redirect()->route('projects.index')->with('error', 'Cannot delete project with existing student applications.');
-    // }
+    // Check if the project has any applications
+    if ($project->applications->count() > 0) {
+        return redirect()->route('projects.show', $project)
+            ->with('error', 'Cannot delete a project that has existing student applications.');
+    }
 
     $project->delete();
 
     return redirect()->route('projects.index')->with('message', 'Project deleted successfully!');
 }
+
 
 
 // ... existing code ...

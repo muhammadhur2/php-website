@@ -1,14 +1,30 @@
 <x-app-layout>
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Project: {{ $project->title }}
         </h2>
     </x-slot>
 
     <div class="py-12">
+        
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+
+                <div class="mb-6">
+
+                @if(session('error'))
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+            Error
+        </div>
+        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+            <p>{{ session('error') }}</p>
+        </div>
+    </div>
+@endif
+                    </div>
                     <!-- Project details -->
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-2">Details:</h3>

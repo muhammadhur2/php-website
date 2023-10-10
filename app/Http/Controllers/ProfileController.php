@@ -32,9 +32,23 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $request->validate([
+            'gpa' => 'required|between:0,7',
+            'roles' => 'required|array',
+        ]);
+    
+        $user = auth()->user();
+        $user->gpa = $request->input('gpa');
+        $user->save();
+    
+        // Sync the roles (attach, detach or update as needed)
+        $user->roles()->sync($request->input('roles'));
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $request->user()->save();
+    
+        return redirect()->route('profile.show')->with('message', 'Profile updated successfully!');
+
+        
     }
 
     /**
@@ -66,5 +80,16 @@ class ProfileController extends Controller
     $inps = User::where('is_business', true)->paginate(5);
     return view('dashboard_student', compact('inps'));
 }
+
+use App\Models\Role;
+
+public function show()
+{
+    $roles = Role::all();
+    $user = auth()->user();
+    return view('profile.show', compact('user', 'roles'));
+}
+
+
 
 }
