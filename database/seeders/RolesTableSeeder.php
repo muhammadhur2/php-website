@@ -13,7 +13,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
 {
-    $roles = ['software developer', 'project manager', 'business analyst', 'tester', 'client liaison'];
+    $roles = ['Software Developer', 'Project Manager', 'Business Analyst', 'Tester', 'Client Liaison'];
 
     foreach ($roles as $role) {
         Role::create(['name' => $role]);

@@ -32,6 +32,10 @@ public function myProjects()
 
 public function store(Request $request)
 {
+
+    if (auth()->user()->is_approved !== true) {
+        return redirect()->route('projects.index')->with('error', 'You are not authorized to create a project.');
+    }
     $validatedData = $request->validate([
         'title' => 'required|string|min:5|unique:projects,title,NULL,id,trimester,' . $request->trimester . ',year,' . $request->year,
         'inp_name' => 'required|string|min:5',

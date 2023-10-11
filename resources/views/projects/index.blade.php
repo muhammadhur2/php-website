@@ -60,10 +60,13 @@
                         {{ $projects->links() }}
 
                         
-                        <x-primary-button class="ml-3" type="submit" >
-                        <a href="{{ route('projects.create') }}">Add New Project</a>
-                        
-            </x-primary-button> 
+                        @php
+    $isApproved = Auth::user()->is_approved;
+@endphp
+
+<x-primary-button class="ml-3" type="submit" {{ $isApproved ? '' : 'disabled' }}>
+    <a href="{{ $isApproved ? route('projects.create') : '#' }}">Add New Project</a>                       
+</x-primary-button>
                     </div>
 
                 </div>

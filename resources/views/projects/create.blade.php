@@ -1,5 +1,11 @@
 <x-app>
 
+@if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
 <h1 class="text-center mb-5">Add New Project</h1>
 
 <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4 p-5">
