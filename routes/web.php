@@ -43,6 +43,7 @@ Route::get('/inps/{inpId}', [InpController::class, 'details'])->name('inp.detail
 Route::get('/projects-list', [ProjectController::class, 'projectsList'])->name('projects.list');
 Route::get('/inps/{inpId}/details', [InpController::class, 'details'])->name('inps.details');
 
+Route::get('/view-student-profiles', 'ProfileController@viewStudentProfiles')->name('view_student_profiles');
 
 
 
