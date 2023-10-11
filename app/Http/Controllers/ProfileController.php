@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use App\Models\Role;
 class ProfileController extends Controller
 {
     /**
@@ -76,12 +76,15 @@ class ProfileController extends Controller
 {
     if(Auth::user()->is_business) {
         return view('dashboard_business');
+    } elseif(Auth::user()->is_teacher) {
+        return view('dashboard_teacher');
+    } else {
+        $inps = User::where('is_business', true)->paginate(5);
+        return view('dashboard_student', compact('inps'));
     }
-    $inps = User::where('is_business', true)->paginate(5);
-    return view('dashboard_student', compact('inps'));
 }
 
-use App\Models\Role;
+
 
 public function show()
 {
