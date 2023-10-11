@@ -43,13 +43,19 @@ Route::get('/inps/{inpId}', [InpController::class, 'details'])->name('inp.detail
 Route::get('/projects-list', [ProjectController::class, 'projectsList'])->name('projects.list');
 Route::get('/inps/{inpId}/details', [InpController::class, 'details'])->name('inps.details');
 
-Route::get('/profile', 'ProfileController@show')->name('profile.show');
-Route::post('/profile', 'ProfileController@update')->name('profile.update');
+
+
+
+
+
+
 
 
 Route::post('/projects/{project}/apply', [ProjectController::class, 'apply'])->name('projects.apply');Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
+
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
 

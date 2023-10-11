@@ -1,3 +1,8 @@
+
+@php
+    $roles = $roles ?? [];
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -12,6 +17,15 @@
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
+
+            @if(auth()->user()->is_teacher == 0 && auth()->user()->is_business == 0)
+    <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+        <div class="max-w-xl">
+            @include('profile.partials.update-student-profile-form')
+        </div>
+    </div>
+@endif
+
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">

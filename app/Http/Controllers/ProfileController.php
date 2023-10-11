@@ -16,10 +16,13 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $roles = Role::all();
         return view('profile.edit', [
             'user' => $request->user(),
+            'roles' => $roles,
         ]);
     }
+    
 
     /**
      * Update the user's profile information.
@@ -46,7 +49,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
     
-        return redirect()->route('profile.show')->with('message', 'Profile updated successfully!');
+        return redirect()->route('profile.show')->with(['status' => 'profile-updated', 'message' => 'Profile updated successfully!']);
 
         
     }
@@ -76,12 +79,9 @@ class ProfileController extends Controller
 {
     if(Auth::user()->is_business) {
         return view('dashboard_business');
-    } elseif(Auth::user()->is_teacher) {
-        return view('dashboard_teacher');
-    } else {
-        $inps = User::where('is_business', true)->paginate(5);
-        return view('dashboard_student', compact('inps'));
     }
+    $inps = User::where('is_business', true)->paginate(5);
+    return view('dashboard_student', compact('inps'));
 }
 
 
@@ -90,7 +90,7 @@ public function show()
 {
     $roles = Role::all();
     $user = auth()->user();
-    return view('profile.show', compact('user', 'roles'));
+    return view('profile.edit', compact('user', 'roles'));
 }
 
 
