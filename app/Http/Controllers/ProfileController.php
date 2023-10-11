@@ -23,6 +23,13 @@ class ProfileController extends Controller
         ]);
     }
     
+    public function viewStudentProfiles()
+{
+    // Fetch all users who are not teachers
+    $students = User::where('is_teacher', 0)->get();
+
+    return view('student-profiles', compact('students'));
+}
 
     /**
      * Update the user's profile information.
@@ -79,6 +86,9 @@ class ProfileController extends Controller
 {
     if(Auth::user()->is_business) {
         return view('dashboard_business');
+    }
+    elseif(Auth::user()->is_teacher){
+        return view('dashboard_teacher');
     }
     $inps = User::where('is_business', true)->paginate(5);
     return view('dashboard_student', compact('inps'));
