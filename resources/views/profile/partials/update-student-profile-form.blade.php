@@ -29,8 +29,10 @@
     
     <!-- Submit Button -->
     <div>
-        <button type="submit">Update Profile</button>
-
+        
+        <x-primary-button class="ml-3"  type="submit">
+        Update Profile
+            </x-primary-button>
         @if (session('status') === 'profile-updated')
     <p
         x-data="{ show: true }"
