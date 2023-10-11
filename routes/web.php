@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers\TeacherController;
+
+Route::get('/unapproved-inps', [TeacherController::class, 'unapprovedInPs'])->name('unapproved_inps');
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/approve-inp/{id}', [InpController::class, 'approve'])->name('inps.approve');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

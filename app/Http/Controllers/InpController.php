@@ -34,4 +34,15 @@ public function projects($inpEmail) {
 
     return view('inps.projects', compact('projects', 'inp'));
 }
+public function approve($id)
+{
+    $inp = User::where('id', $id)->firstOrFail();
+    if ($inp) {
+        $inp->is_approved = 1;
+        $inp->save();
+    }
+    return redirect()->route('unapproved_inps');
+    
+}
+
 }
