@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Role;
+
 
 class ProfileController extends Controller
 {
@@ -16,10 +18,13 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $roles = Role::all();
         return view('profile.edit', [
             'user' => $request->user(),
+            'roles' => $roles,
         ]);
     }
+    
 
     /**
      * Update the user's profile information.
@@ -46,7 +51,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
     
-        return redirect()->route('profile.show')->with('message', 'Profile updated successfully!');
+        return redirect()->route('profile.show')->with(['status' => 'profile-updated', 'message' => 'Profile updated successfully!']);
 
         
     }
@@ -81,13 +86,11 @@ class ProfileController extends Controller
     return view('dashboard_student', compact('inps'));
 }
 
-use App\Models\Role;
-
 public function show()
 {
     $roles = Role::all();
     $user = auth()->user();
-    return view('profile.show', compact('user', 'roles'));
+    return view('profile.edit', compact('user', 'roles'));
 }
 
 
